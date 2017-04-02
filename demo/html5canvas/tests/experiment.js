@@ -22,9 +22,15 @@ embox2dTest_experiment.prototype.setup = function() {
 	var dynamicBodyDef = new b2BodyDef();
 
 	dynamicBodyDef.set_type(Box2D.b2_dynamicBody);
-	dynamicBodyDef.set_position(new b2Vec2(0.0, 4.0));
+	dynamicBodyDef.set_position(new b2Vec2(0.0, 1.0));
+	var DEGTORAD = 0.0174532925199432957;
+	//dynamicBodyDef.set_linearVelocity(new b2Vec2(-4.0, -4.0));
+	//dynamicBodyDef.set_angularVelocity(-90 * DEGTORAD);
+	dynamicBodyDef.set_angle(30.0);
 
 	var dynamicBody = world.CreateBody(dynamicBodyDef);
+	window.dynamicBody = dynamicBody;;
+
 	var polygonShape = new b2PolygonShape();
 
 	polygonShape.SetAsBox(1.0, 1.0);

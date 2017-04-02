@@ -301,9 +301,9 @@ function createWorld() {
     if ( world != null ) 
         Box2D.destroy(world);
         
-    world = new Box2D.b2World( new Box2D.b2Vec2(0.0, -10.0) );
+    world = new Box2D.b2World( new Box2D.b2Vec2(0.0, -1.0) );
     world.SetDebugDraw(myDebugDraw);
-    
+    window.world = world;
     mouseJointGroundBody = world.CreateBody( new Box2D.b2BodyDef() );
     
     var e = document.getElementById("testSelection");
@@ -326,6 +326,7 @@ function step(timestamp) {
     
     if ( ! showStats ) {
         world.Step(1/60, 3, 2);
+        //dynamicBody.ApplyForce(new b2Vec2(-5, 0), dynamicBody.GetWorldCenter());
         draw();
         return;
     }
@@ -334,7 +335,8 @@ function step(timestamp) {
     world.Step(1/60, 3, 2);
     var frametime = (Date.now() - current);
     frameTime60 = frameTime60 * (59/60) + frametime * (1/60);
-    
+
+
     draw();
     statusUpdateCounter++;
     if ( statusUpdateCounter > 20 ) {
